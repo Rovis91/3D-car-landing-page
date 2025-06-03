@@ -1,208 +1,173 @@
-# AutoFlow - Landing Page Immersive 3D
+# AutoMarket 3D Landing Page
 
-Une landing page révolutionnaire utilisant Three.js pour créer une expérience immersive avec un modèle 3D de voiture et une navigation par caméra fluide.
+A modern, immersive 3D landing page for AutoMarket featuring a low-poly car model, smooth camera animations, and mobile-first design.
 
-## 🎯 Concept
+## 🚀 Features
 
-Cette landing page propose une navigation innovante où la caméra 3D se déplace autour d'un modèle de voiture pour révéler différentes sections de contenu :
+- **3D Low-Poly Car Model**: Custom-built car with ~800 polygons
+- **Smooth Camera Transitions**: 6 different camera angles corresponding to content sections
+- **Mobile-First Design**: Touch gestures, optimized performance, responsive layout
+- **Urban Environment**: Stylized street scene with neon lighting
+- **Interactive Navigation**: Scroll, swipe, keyboard, and dot navigation
+- **Glass Morphism UI**: Modern overlays with backdrop blur effects
+- **Performance Optimized**: < 1MB model size, efficient rendering
 
-- **Hero** : Vue globale de la voiture
-- **Tracking** : Focus sur la technologie (côté droit)
-- **CTA** : Focus sur la portière (côté gauche) 
-- **FAQ** : Vue arrière de la voiture
-- **Contact** : Focus sur la plaque d'immatriculation
-
-## 🚀 Fonctionnalités
-
-### Navigation Intuitive
-- **Scroll/Molette** : Navigation entre les sections
-- **Clavier** : Flèches directionnelles, touches 1-5 pour navigation directe
-- **Touch** : Swipe vertical sur mobile
-- **Indicateurs visuels** : Points de navigation latéraux
-
-### Animations Fluides
-- Transitions de caméra en douceur avec lerp/slerp
-- Animations de contenu avec Framer Motion
-- Effets de particules flottantes
-- Glassmorphism et backdrop blur
-
-### Architecture Modulaire
-```
-src/
-├── components/
-│   ├── Scene3D.jsx          # Scène Three.js principale
-│   ├── ScrollController.jsx  # Gestion de la navigation
-│   └── ContentSections.jsx   # Affichage du contenu
-├── store/
-│   └── cameraStore.js       # État global avec Zustand
-└── App.jsx                  # Composant racine
-```
-
-## 🛠️ Technologies
-
-- **React 18** + **Vite** : Framework et build tool
-- **Three.js** + **@react-three/fiber** : Rendu 3D
-- **@react-three/drei** : Helpers et composants 3D
-- **Framer Motion** : Animations fluides
-- **Zustand** : Gestion d'état légère
-- **Tailwind CSS** : Styling et responsive
-
-## 📱 Installation & Développement
+## 📦 Installation
 
 ```bash
-# Installation des dépendances
+# Clone the repository
+git clone https://github.com/yourusername/automarket-3d-landing.git
+
+# Navigate to project directory
+cd automarket-3d-landing
+
+# Install dependencies
 npm install
 
-# Démarrage du serveur de développement
+# Start development server
 npm run dev
 
-# Build de production
+# Build for production
 npm run build
 ```
 
-## 🎮 Navigation
+## 🎨 Customization
 
-### Contrôles Clavier
-- `↑/↓` : Navigation entre sections
-- `Space` : Section suivante
-- `Page Up/Down` : Navigation rapide
-- `1-5` : Accès direct aux sections
-- `Home/End` : Première/Dernière section
+### Car Model
 
-### Contrôles Souris/Touch
-- **Molette** : Navigation fluide
-- **Swipe vertical** : Navigation mobile
-- **Clics sur indicateurs** : Navigation directe
+The low-poly car is created procedurally in the `LowPolyCar` component. To customize:
 
-## 📐 Positions de Caméra
+1. **Colors**: Modify the `meshStandardMaterial` color properties
+2. **Shape**: Adjust the `boxGeometry` dimensions
+3. **Details**: Add or remove mesh components
 
-Les positions sont définies dans `cameraStore.js` :
+### Camera Positions
+
+Edit the camera positions in the `useCameraStore`:
 
 ```javascript
-const cameraPositions = {
-  hero: { position: [6, 4, 8], lookAt: [0, 0, 0] },
-  tracking: { position: [3, 2, 2], lookAt: [1.5, 0.5, 0] },
-  cta: { position: [-4, 1, 3], lookAt: [-2, 0, 1] },
-  faq: { position: [0, 3, -6], lookAt: [0, 0, -3] },
-  contact: { position: [2, 1, -4], lookAt: [0, -0.5, -2.5] }
+cameraPositions: {
+  hero: { position: [x, y, z], lookAt: [x, y, z] },
+  // ... other sections
 }
 ```
 
-## 🎨 Customisation
+### Environment
 
-### Modifier le Contenu
-Éditez `ContentSections.jsx` pour personnaliser le contenu de chaque section.
+Customize the street scene in `StreetEnvironment`:
+- Building positions and sizes
+- Street light colors
+- Window light density
 
-### Ajuster les Animations de Caméra
-Modifiez les positions dans `cameraStore.js` et la vitesse d'interpolation dans `Scene3D.jsx`.
+### Theme Colors
 
-### Remplacer le Modèle 3D
-1. Remplacez le composant `TempCar` dans `Scene3D.jsx`
-2. Utilisez `useGLTF` de `@react-three/drei` pour charger votre modèle
-3. Ajustez les points d'intérêt selon votre modèle
+The project uses CSS variables from your provided `index.css`:
+- Primary: `#8B5CF6` (Purple)
+- Secondary: `#3B82F6` (Blue)
 
-```javascript
-// Exemple d'intégration d'un modèle GLTF
-import { useGLTF } from '@react-three/drei'
+## 🏗️ Project Structure
 
-function CarModel() {
-  const { nodes, materials } = useGLTF('/models/car.gltf')
-  return <primitive object={nodes.Scene} />
-}
+```
+src/
+├── App.jsx                 # Main component with all 3D logic
+├── index.css              # Global styles and theme
+├── main.jsx               # Entry point
+└── assets/
+    └── (future model files)
+
+public/
+└── (static assets)
+
+config/
+├── tailwind.config.js     # Tailwind configuration
+├── vite.config.js         # Vite bundler config
+└── package.json           # Dependencies
 ```
 
-## 📊 Structure des Données
+## 🚗 Creating Your Own Car Model
 
-### Section
-```javascript
-{
-  id: 'hero',
-  title: 'AutoFlow',
-  subtitle: 'Solution complète...',
-  description: 'Transformez...',
-  position: 0
-}
-```
+### Option 1: Blender (Recommended)
 
-### Position de Caméra
-```javascript
-{
-  position: [x, y, z],    // Position 3D
-  lookAt: [x, y, z],      // Point de focus
-  fov: 50                 // Champ de vision
-}
-```
+1. **Download Blender** (free): https://www.blender.org/
+2. **Create Low-Poly Model**:
+   - Start with a cube
+   - Use subdivision and extrusion
+   - Keep polygon count < 1000
+   - UV unwrap for texturing
+3. **Export as GLTF/GLB**:
+   - File > Export > glTF 2.0
+   - Choose GLB for single file
+   - Enable compression
 
-## 🔧 Optimisations
+### Option 2: Online Tools
 
-### Performance
-- Utilisation de `React.memo` pour les composants coûteux
-- Debouncing des événements de scroll
-- GPU acceleration avec `transform: translateZ(0)`
-- Lazy loading des ressources 3D
+- **Spline**: https://spline.design/ (Web-based 3D)
+- **Womp**: https://womp.com/ (Beginner-friendly)
+- **Blockbench**: https://www.blockbench.net/ (Low-poly focused)
 
-### Mobile
-- Touch events optimisés
-- Responsive design
-- Réduction de la complexité 3D sur mobile
+### Model Requirements
 
-## 🎯 Prochaines Étapes
+- **Format**: GLTF/GLB
+- **Size**: < 1MB (including textures)
+- **Polygons**: 500-1000 for optimal performance
+- **Texture**: Single atlas texture (512x512 or 1024x1024)
 
-### Intégration du Modèle Réel
-1. **Préparation du modèle** :
-   - Optimisation pour le web (réduction polycount)
-   - Textures compressées
-   - Format GLTF/GLB
+## 📱 Mobile Optimization
 
-2. **Points d'intérêt** :
-   - Mapping précis sur le modèle
-   - Ajustement des positions de caméra
-   - Étalonnage des distances
+The landing page is optimized for mobile devices:
 
-3. **Interactions avancées** :
-   - Hover effects sur les parties de la voiture
-   - Animations de pièces (ouverture de portes, etc.)
-   - Configurateur de couleurs
+- Touch gesture support (swipe to navigate)
+- Reduced polygon count on mobile
+- Simplified shadows and effects
+- 60 FPS target on modern phones
 
-### Améliorations UX
-- Loading screen avec progression
-- Mode debug pour ajuster les caméras
-- Sauvegarde des préférences utilisateur
-- Analytics des interactions
+## 🎯 Performance Tips
 
-## 📝 Notes Techniques
+1. **Texture Optimization**:
+   - Use compressed textures (JPEG for diffuse, PNG for transparency)
+   - Reduce texture size on mobile devices
 
-### Gestion des États
-Le store Zustand centralise :
-- Section courante
-- Progression du scroll
-- État de transition
-- Métadonnées des sections
+2. **Model Optimization**:
+   - Use LOD (Level of Detail) for distant objects
+   - Merge meshes with same material
+   - Bake lighting for static objects
 
-### Animation de Caméra
-```javascript
-// Interpolation fluide position + rotation
-camera.position.lerp(targetPosition, delta * 2)
-camera.quaternion.slerp(targetQuaternion, delta * 2)
-```
+3. **Code Optimization**:
+   - Lazy load heavy components
+   - Use React.memo for static UI elements
+   - Throttle scroll events
 
-### Responsive 3D
-- Ajustement du FOV selon la taille d'écran
-- Positions de caméra adaptatives
-- Réduction des effets sur mobile
+## 🐛 Troubleshooting
 
-## 🤝 Contribution
+### Common Issues
 
-Pour contribuer au projet :
-1. Fork le repository
-2. Créer une branche feature
-3. Commit les changements
-4. Créer une Pull Request
+1. **Black screen on load**:
+   - Check browser console for errors
+   - Ensure WebGL is enabled
+   - Try different browser
 
-## 📄 Licence
+2. **Poor performance**:
+   - Reduce polygon count
+   - Disable shadows on mobile
+   - Lower texture resolution
 
-MIT License - Voir LICENSE.md pour plus de détails.
+3. **Touch not working**:
+   - Check touch event listeners
+   - Ensure no z-index conflicts
+   - Test on real device
+
+## 📄 License
+
+MIT License - feel free to use for your projects!
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 💬 Support
+
+For questions or issues, please open a GitHub issue or contact support.
 
 ---
 
-**Développé avec ❤️ pour une expérience utilisateur immersive** 
+Built with ❤️ using React Three Fiber, Tailwind CSS, and Framer Motion
