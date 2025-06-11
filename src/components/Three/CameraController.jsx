@@ -4,20 +4,20 @@ import * as THREE from 'three'
 
 const CAMERA_POSITIONS = {
   hero: { 
-    position: [0, 1, 5], 
-    lookAt: [0, 0.5, 0] 
+    position: [0, 6, 2], 
+    lookAt: [0, -10, 0] 
   },
   problem: { 
-    position: [-2, 1, 4], 
-    lookAt: [0, 0.5, 0] 
+    position: [-2, 2, 5], 
+    lookAt: [0, 0.5, 1] 
   },
   solution: { 
-    position: [-4, 1, 2], 
-    lookAt: [0, 0.5, 0] 
+    position: [2, 2, 5], 
+    lookAt: [0, 0.5, 1] 
   },
   features: { 
-    position: [-4, 1, -2], 
-    lookAt: [0, 0.5, 0] 
+    position: [3, 1, -3], 
+    lookAt: [0, 1, 0] 
   },
   pricing: { 
     position: [0, 8, 0], 
@@ -53,7 +53,7 @@ function CameraController({ currentSection }) {
   
   useFrame((state, delta) => {
     // Smooth camera movement with interpolation
-    camera.position.lerp(targetPosition.current, delta * 2)
+    camera.position.lerp(targetPosition.current, delta )
     
     // Smooth look at transition
     const direction = targetLookAt.current.clone().sub(camera.position).normalize()

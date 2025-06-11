@@ -1,11 +1,16 @@
 import React from 'react'
 import { Card } from 'primereact/card'
+import useTilt from '../../hooks/useTilt'
 
 function ProblemSection() {
+  const tiltRef1 = useTilt()
+  const tiltRef2 = useTilt()
+  const tiltRef3 = useTilt()
+  
   const problems = [
-    { title: "Perte de temps", content: "Jusqu'à 6h par jour perdues sur des tâches répétitives" },
-    { title: "Dispersion", content: "Gérer 15+ plateformes différentes manuellement" },
-    { title: "Opportunités ratées", content: "75% des bonnes affaires échappent par manque de réactivité" }
+    { title: "Perte de temps", content: "Jusqu'à 6h par jour perdues sur des tâches répétitives", ref: tiltRef1 },
+    { title: "Dispersion", content: "Gérer 15+ plateformes différentes manuellement", ref: tiltRef2 },
+    { title: "Opportunités ratées", content: "75% des bonnes affaires échappent par manque de réactivité", ref: tiltRef3 }
   ]
 
   return (
@@ -19,7 +24,8 @@ function ProblemSection() {
             {problems.map((problem, index) => (
               <Card 
                 key={index}
-                className="shadow-3 border-round-2xl"
+                ref={problem.ref}
+                className="shadow-3 border-round-2xl tilt-card"
                 style={{ 
                   backgroundColor: 'var(--surface-card)', 
                   border: '1px solid var(--surface-border)',

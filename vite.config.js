@@ -4,11 +4,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    include: ['react', 'react-dom', 'three', '@react-three/fiber', '@react-three/drei'],
-    force: true
-  },
-  resolve: {
-    dedupe: ['react', 'react-dom', '@react-three/fiber']
+    include: ['react', 'react-dom', 'three', '@react-three/fiber', '@react-three/drei']
   },
   build: {
     rollupOptions: {
@@ -16,7 +12,7 @@ export default defineConfig({
         manualChunks: {
           'three': ['three'],
           'react-three': ['@react-three/fiber', '@react-three/drei'],
-          'vendor': ['react', 'react-dom', 'framer-motion', 'zustand']
+          'vendor': ['react', 'react-dom']
         }
       }
     }

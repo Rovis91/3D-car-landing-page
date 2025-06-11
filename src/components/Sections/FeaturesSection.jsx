@@ -1,19 +1,27 @@
 import React from 'react'
 import { Card } from 'primereact/card'
+import useTilt from '../../hooks/useTilt'
 
 function FeaturesSection() {
+  const tiltRef1 = useTilt()
+  const tiltRef2 = useTilt()
+  const tiltRef3 = useTilt()
+  
   const features = [
     { 
       title: "Scanner intelligent", 
-      content: ["Analyse 20+ plateformes", "Algorithme de matching avancé", "Alerte instantanée"]
+      content: ["Analyse 20+ plateformes", "Algorithme de matching avancé", "Alerte instantanée"],
+      ref: tiltRef1
     },
     { 
       title: "Gestion centralisée", 
-      content: ["Interface unique", "Suivi des performances", "Reporting automatique"]
+      content: ["Interface unique", "Suivi des performances", "Reporting automatique"],
+      ref: tiltRef2
     },
     { 
       title: "Intégrations natives", 
-      content: ["API ouverte", "Connexions DMS", "Export automatique"]
+      content: ["API ouverte", "Connexions DMS", "Export automatique"],
+      ref: tiltRef3
     }
   ]
 
@@ -28,7 +36,8 @@ function FeaturesSection() {
             {features.map((feature, index) => (
               <Card 
                 key={index}
-                className="shadow-3 border-round-2xl"
+                ref={feature.ref}
+                className="shadow-3 border-round-2xl tilt-card"
                 style={{ 
                   backgroundColor: 'var(--surface-card)', 
                   border: '1px solid var(--surface-border)',

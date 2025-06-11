@@ -11,7 +11,7 @@ import FAQSection from './components/Sections/FAQSection'
 import useScrollProgress from './hooks/useScrollProgress'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
-import 'primeflex/primeflex.css'
+import './styles/layout.css'
 
 function App() {
   const { currentSection } = useScrollProgress()

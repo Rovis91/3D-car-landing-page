@@ -2,6 +2,7 @@ import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import CarModel from './CarModel'
 import CameraController from './CameraController'
+import ParticleField from './ParticleField'
 
 function ThreeScene({ scrollProgress, currentSection }) {
   return (
@@ -10,47 +11,26 @@ function ThreeScene({ scrollProgress, currentSection }) {
         <CameraController scrollProgress={scrollProgress} currentSection={currentSection} />
         
         {/* Ambient Light */}
-        <ambientLight intensity={0.6} />
+        <ambientLight intensity={0.4} />
         
         {/* Main Directional Light */}
         <directionalLight
-          position={[10, 10, 5]}
-          intensity={1.5}
-          castShadow
-          shadow-mapSize={[2048, 2048]}
-          shadow-camera-far={50}
-          shadow-camera-left={-10}
-          shadow-camera-right={10}
-          shadow-camera-top={10}
-          shadow-camera-bottom={-10}
-        />
-        
-        {/* Fill Light (from opposite side) */}
-        <directionalLight
-          position={[-5, 8, 3]}
-          intensity={0.8}
-          color="#ffffff"
-        />
-        
-        {/* Rim Light (backlighting) */}
-        <directionalLight
-          position={[0, 5, -8]}
-          intensity={0.6}
-          color="#4f46e5"
-        />
-        
-        {/* Spot Light for highlights */}
-        <spotLight
-          position={[0, 10, 0]}
-          angle={0.3}
-          penumbra={0.1}
+          position={[5, 5, 5]}
           intensity={1}
           castShadow
+          shadow-mapSize={[1024, 1024]}
+        />
+        
+        {/* Fill Light */}
+        <directionalLight
+          position={[-3, 3, 2]}
+          intensity={0.5}
         />
         
         {/* Car Model */}
         <Suspense fallback={null}>
           <CarModel position={[0, 0, 0]} />
+          <ParticleField />
         </Suspense>
       </Canvas>
     </div>

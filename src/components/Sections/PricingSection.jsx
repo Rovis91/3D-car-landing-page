@@ -2,27 +2,35 @@ import React from 'react'
 import { Card } from 'primereact/card'
 import { Button } from 'primereact/button'
 import { Badge } from 'primereact/badge'
+import useTilt from '../../hooks/useTilt'
 
 function PricingSection() {
+  const tiltRef1 = useTilt()
+  const tiltRef2 = useTilt()
+  const tiltRef3 = useTilt()
+  
   const plans = [
     {
       name: "SOLO", 
       subtitle: "Pour démarrer", 
       price: "49€",
-      features: ["Jusqu'à 50 véhicules", "3 utilisateurs", "Scanner 5 plateformes", "Support email"]
+      features: ["Jusqu'à 50 véhicules", "3 utilisateurs", "Scanner 5 plateformes", "Support email"],
+      ref: tiltRef1
     },
     {
       name: "PRO", 
       subtitle: "Pour performer", 
       price: "99€", 
       recommended: true,
-      features: ["Véhicules illimités", "10 utilisateurs", "Scanner 20+ plateformes", "Support prioritaire", "API & intégrations"]
+      features: ["Véhicules illimités", "10 utilisateurs", "Scanner 20+ plateformes", "Support prioritaire", "API & intégrations"],
+      ref: tiltRef2
     },
     {
       name: "ENTREPRISE", 
       subtitle: "Sur mesure", 
       price: "Sur devis",
-      features: ["Multi-sites", "Utilisateurs illimités", "Formations incluses", "Account manager dédié"]
+      features: ["Multi-sites", "Utilisateurs illimités", "Formations incluses", "Account manager dédié"],
+      ref: tiltRef3
     }
   ]
 
@@ -37,7 +45,8 @@ function PricingSection() {
             {plans.map((plan, index) => (
               <Card 
                 key={index}
-                className={`relative shadow-4 border-round-2xl`}
+                ref={plan.ref}
+                className={`relative shadow-4 border-round-2xl tilt-card`}
                 style={{ 
                   backgroundColor: 'var(--surface-card)', 
                   border: plan.recommended ? '2px solid var(--primary-color)' : '1px solid var(--surface-border)',

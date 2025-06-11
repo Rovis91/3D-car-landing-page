@@ -1,11 +1,16 @@
 import React from 'react'
 import { Card } from 'primereact/card'
+import useTilt from '../../hooks/useTilt'
 
 function SolutionSection() {
+  const tiltRef1 = useTilt()
+  const tiltRef2 = useTilt()
+  const tiltRef3 = useTilt()
+  
   const pillars = [
-    { title: "Centralisation", content: "Toutes vos plateformes en un seul endroit" },
-    { title: "Automatisation", content: "Scans automatiques et alertes en temps réel" },
-    { title: "Optimisation", content: "Intelligence artificielle pour les meilleures opportunités" }
+    { title: "Centralisation", content: "Toutes vos plateformes en un seul endroit", ref: tiltRef1 },
+    { title: "Automatisation", content: "Scans automatiques et alertes en temps réel", ref: tiltRef2 },
+    { title: "Optimisation", content: "Intelligence artificielle pour les meilleures opportunités", ref: tiltRef3 }
   ]
 
   return (
@@ -22,7 +27,8 @@ function SolutionSection() {
             {pillars.map((pillar, index) => (
               <Card 
                 key={index}
-                className="shadow-3 border-round-2xl"
+                ref={pillar.ref}
+                className="shadow-3 border-round-2xl tilt-card"
                 style={{ 
                   backgroundColor: 'var(--surface-card)', 
                   border: '1px solid var(--surface-border)',
