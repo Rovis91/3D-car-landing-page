@@ -1,0 +1,518 @@
+/* Variables CSS pour le thème glassmorphism */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --glass-blur: blur(20px);
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  --warning-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.8);
+  --text-muted: rgba(255, 255, 255, 0.6);
+}
+
+/* Base section styles */
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.section-card {
+  max-width: 1200px;
+  width: 100%;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  box-shadow: var(--glass-shadow);
+  padding: 3rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Hero section */
+.hero-section-card {
+  max-width: 900px;
+  width: 100%;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 32px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.1);
+  padding: 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--text-primary), var(--text-secondary));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.hero-cta {
+  background: var(--primary-gradient) !important;
+  border: none !important;
+  padding: 1rem 2.5rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  border-radius: 50px !important;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.hero-cta:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4) !important;
+}
+
+.hero-supporting {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Section titles */
+.section-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.section-statement {
+  font-size: 1.3rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Grid layouts */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* Panel customizations avec glassmorphism */
+.problem-panel {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(239, 68, 68, 0.2) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 32px rgba(239, 68, 68, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.problem-panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(239, 68, 68, 0.15) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+.solution-panel {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 32px rgba(16, 185, 129, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.solution-panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(16, 185, 129, 0.15) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
+.feature-panel {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(139, 92, 246, 0.05) 100%) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.feature-panel:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(139, 92, 246, 0.15) !important;
+  border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+.faq-panel {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.05) 100%) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(59, 130, 246, 0.2) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.1) !important;
+  margin-bottom: 1rem !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.faq-panel:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(59, 130, 246, 0.15) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+/* Headers des panels */
+.problem-panel .p-panel-header,
+.solution-panel .p-panel-header,
+.feature-panel .p-panel-header,
+.faq-panel .p-panel-header {
+  background: transparent !important;
+  border: none !important;
+  padding: 1.5rem !important;
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+  font-size: 1.1rem !important;
+}
+
+.problem-panel .p-panel-content,
+.solution-panel .p-panel-content,
+.feature-panel .p-panel-content,
+.faq-panel .p-panel-content {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 1.5rem 1.5rem !important;
+  color: var(--text-secondary) !important;
+  line-height: 1.6 !important;
+}
+
+/* Pricing cards glassmorphism */
+.pricing-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%) !important;
+  backdrop-filter: blur(25px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.pricing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--primary-gradient);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.pricing-card:hover::before {
+  opacity: 1;
+}
+
+.pricing-card.recommended {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%) !important;
+  border-color: rgba(139, 92, 246, 0.3) !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.2) !important;
+}
+
+.pricing-card.recommended::before {
+  background: var(--secondary-gradient);
+  opacity: 1;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px) !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.pricing-card.recommended:hover {
+  transform: scale(1.05) translateY(-10px) !important;
+  box-shadow: 0 30px 80px rgba(139, 92, 246, 0.25) !important;
+}
+
+.pricing-content {
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.pricing-badge {
+  background: var(--secondary-gradient) !important;
+  color: white !important;
+  border: none !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 20px !important;
+  font-weight: 600 !important;
+  margin-bottom: 1.5rem !important;
+  box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3) !important;
+}
+
+.plan-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.plan-subtitle {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.plan-price {
+  font-size: 3rem;
+  font-weight: 800;
+  background: var(--primary-gradient);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.price-period {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.features-list li {
+  padding: 0.75rem 0;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}
+
+.features-list li:last-child {
+  border-bottom: none;
+}
+
+.features-list li::before {
+  content: '✓';
+  margin-right: 0.75rem;
+  color: #10b981;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.plan-button {
+  background: var(--primary-gradient) !important;
+  border: none !important;
+  padding: 0.875rem 2rem !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  margin-top: 1rem !important;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.plan-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4) !important;
+}
+
+/* FAQ section */
+.faq-container {
+  margin-bottom: 2rem;
+}
+
+.faq-cta {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.faq-cta p {
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.faq-cta .p-button {
+  background: var(--success-gradient) !important;
+  border: none !important;
+  padding: 0.875rem 2rem !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 8px 25px rgba(79, 172, 254, 0.3) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.faq-cta .p-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 30px rgba(79, 172, 254, 0.4) !important;
+}
+
+/* Animations d'apparition */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section-card,
+.hero-section-card,
+.pricing-card,
+.problem-panel,
+.solution-panel,
+.feature-panel,
+.faq-panel {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .section {
+    padding: 1rem;
+    height: auto;
+    min-height: 100vh;
+  }
+  
+  .section-card,
+  .hero-section-card {
+    padding: 2rem;
+    margin: 1rem 0;
+    border-radius: 20px;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle,
+  .section-statement {
+    font-size: 1.1rem;
+  }
+  
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  /* Simplifie les effets sur mobile */
+  .pricing-card.recommended {
+    transform: none !important;
+  }
+  
+  .pricing-card:hover,
+  .pricing-card.recommended:hover {
+    transform: none !important;
+  }
+  
+  .plan-price {
+    font-size: 2.5rem;
+  }
+  
+  .section:nth-child(4),
+  .section:nth-child(5),
+  .section:nth-child(6) {
+    margin-top: 2rem;
+    padding-top: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section {
+    padding: 0.5rem;
+  }
+  
+  .section-card,
+  .hero-section-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .section-title {
+    font-size: 1.75rem;
+  }
+  
+  .pricing-content {
+    padding: 1.5rem;
+  }
+} 
