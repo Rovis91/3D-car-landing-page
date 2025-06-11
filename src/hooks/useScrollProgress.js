@@ -1,16 +1,14 @@
 import { useState, useEffect, useCallback } from 'react'
-import { SECTIONS } from '../utils/constants'
+
+const SECTIONS = ['hero', 'problem', 'solution', 'features', 'pricing', 'faq']
 
 function useScrollProgress() {
   const [scrollProgress, setScrollProgress] = useState(0)
   const [currentSection, setCurrentSection] = useState('hero')
   
   const handleScroll = useCallback(() => {
-    const container = document.querySelector('.content-layer')
-    if (!container) return
-    
-    const scrollTop = container.scrollTop
-    const scrollHeight = container.scrollHeight - container.clientHeight
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
     
     if (scrollHeight <= 0) return
     
@@ -18,7 +16,7 @@ function useScrollProgress() {
     setScrollProgress(progress)
     
     // Better section detection based on actual scroll position
-    const sectionHeight = container.clientHeight // Each section is 100vh
+    const sectionHeight = window.innerHeight // Each section is 100vh
     const currentSectionIndex = Math.floor(scrollTop / sectionHeight)
     const clampedIndex = Math.min(Math.max(currentSectionIndex, 0), SECTIONS.length - 1)
     const newSection = SECTIONS[clampedIndex]
@@ -29,14 +27,11 @@ function useScrollProgress() {
   }, [currentSection])
   
   useEffect(() => {
-    const container = document.querySelector('.content-layer')
-    if (!container) return
-    
-    container.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('scroll', handleScroll, { passive: true })
     handleScroll() // Initial calculation
     
     return () => {
-      container.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', handleScroll)
     }
   }, [handleScroll])
   
